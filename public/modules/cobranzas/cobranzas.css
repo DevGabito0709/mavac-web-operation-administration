@@ -1,0 +1,49 @@
+.cobranzas-box {
+    max-width: 700px;
+}
+
+.cobranzas-box h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.panel-seccion {
+    margin-bottom: 30px;
+}
+
+.panel-seccion h3 {
+    margin-bottom: 14px;
+}
+
+/* ENTIDADES */
+
+.panel-seccion label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.panel-seccion label input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* BOTONES */
+
+.acciones-principales {
+    margin-top: 14px;
+}
+
+#btnProcesar {
+    min-width: 120px;
+}
+
+/* LOGS */
+
+#logBox {
+    margin-top: 10px;
+    padding: 12px;
+    min-height: 70px;
+    background: #f3f3f3;
+    border-radius: 6px;
+    box-sizing: border-box;
+}

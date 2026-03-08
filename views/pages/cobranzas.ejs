@@ -1,0 +1,54 @@
+<%- include('../partials/head', { title: title, styles: styles }) %>
+
+    <div class="layout">
+
+        <%- include('../partials/sidebar', { sidebarTitle: sidebarTitle, buttons: buttons }) %>
+
+        <main class="content">
+
+            <div class="cobranzas-box">
+
+                <h1>MAPACHE - AUTOMATIZACIONES COBRANZAS MAVAC</h1>
+
+                <section class="panel-seccion">
+                    <h3>Entidades</h3>
+
+                    <label>
+                        <input type="checkbox" id="chkPacifico">
+                        PACÍFICO
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="chkRimac">
+                        RÍMAC
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="chkPositiva">
+                        LA POSITIVA
+                    </label>
+
+                    <label>
+                        <input type="checkbox" id="chkMapfre">
+                        MAPFRE
+                    </label>
+                </section>
+
+                <section class="panel-seccion">
+                    <div class="acciones-principales">
+                        <button id="btnProcesar">PROCESAR</button>
+                    </div>
+                </section>
+
+                <section class="panel-seccion">
+                    <h3>Estado / Logs</h3>
+                    <div id="logBox">Listo.</div>
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+<%- include('../partials/scripts', { scripts: scripts }) %>

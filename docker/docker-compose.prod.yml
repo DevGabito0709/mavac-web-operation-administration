@@ -1,0 +1,40 @@
+# Producción: backend Node + PostgreSQL.
+# Ejecutar desde la raíz del proyecto:
+#   docker compose -f docker/docker-compose.prod.yml up -d
+# Variables: definir .env en la raíz (DB_PASSWORD, JWT_SECRET, FRONT_ORIGIN, COOKIE_DOMAIN, etc.)
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-web_proyectus}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: mavac-backend:latest
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      JWT_SECRET: ${JWT_SECRET}
+      FRONT_ORIGIN: ${FRONT_ORIGIN}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN}
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+volumes:
+  db_data:

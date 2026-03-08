@@ -1,0 +1,8 @@
+<aside class="sidebar">
+    <h2><%= sidebarTitle %></h2>
+    <div class="menu">
+        <% if (typeof buttons !== 'undefined' && buttons && buttons.length) { buttons.forEach(function(btn) { %>
+        <button type="button" id="<%= btn.id %>"><%= btn.label %></button>
+        <% }); } %>
+    </div>
+</aside>

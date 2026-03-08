@@ -9,4 +9,4 @@ db_data
 *.log
 .DS_Store
 README.md
-docker/
+docker-compose*.yml
