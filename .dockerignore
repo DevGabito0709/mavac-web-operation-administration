@@ -1,0 +1,12 @@
+# No copiar al contenedor
+node_modules
+.env
+.env.*
+!.env.example
+db_data
+.git
+.gitignore
+*.log
+.DS_Store
+README.md
+docker/
