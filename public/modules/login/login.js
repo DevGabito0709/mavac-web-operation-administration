@@ -1,3 +1,4 @@
+// login.js
 const btnLogin = document.getElementById("btnLogin");
 const msg = document.getElementById("msg");
 const inputUsuario = document.getElementById("usuario");
@@ -63,7 +64,7 @@ async function intentarLogin() {
         }
 
         if (res.ok) {
-            window.location.replace("/modules/inicio_oficina/inicio_oficina.html");
+            window.location.replace("/inicio_oficina");
             return;
         }
 

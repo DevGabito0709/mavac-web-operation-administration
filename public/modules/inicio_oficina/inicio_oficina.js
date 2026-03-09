@@ -1,3 +1,4 @@
+// inicio_oficina.js
 const btnCobranzas = document.getElementById("btnCobranzas");
 const btnAdministracion = document.getElementById("btnAdministracion");
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");
@@ -17,7 +18,7 @@ function getCookie(name) {
 }
 
 btnCobranzas.addEventListener("click", () => {
-    window.location.href = "/modules/cobranzas/cobranzas.html";
+    window.location.href = "/cobranzas";
 });
 
 btnAdministracion.addEventListener("click", () => {

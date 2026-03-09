@@ -1,3 +1,4 @@
+// cobranzas.js
 const btnVolver = document.getElementById("btnVolver");
 const btnProcesar = document.getElementById("btnProcesar");
 const logBox = document.getElementById("logBox");
@@ -22,7 +23,7 @@ function getCookie(name) {
 }
 
 btnVolver.addEventListener("click", () => {
-    window.location.href = "/modules/inicio_oficina/inicio_oficina.html";
+    window.location.href = "/inicio_oficina";
 });
 
 btnProcesar.addEventListener("click", async () => {
