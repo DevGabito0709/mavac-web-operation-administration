@@ -1,3 +1,4 @@
+// cobranzas.routes.js
 const express = require("express");
 const { authPage } = require("../middlewares/auth");
 
@@ -17,7 +18,8 @@ router.get("/cobranzas", authPage, (req, res) => {
         styles: ["/modules/cobranzas/cobranzas.css"],
         scripts: ["/modules/cobranzas/cobranzas.js"],
         sidebarTitle: "Cobranzas",
-        buttons: SIDEBAR_BUTTONS
+        buttons: SIDEBAR_BUTTONS,
+        auth: req.auth
     });
 });
 

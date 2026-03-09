@@ -1,3 +1,4 @@
+// public.routes.js
 const express = require("express");
 const { redirectIfAuthenticated } = require("../middlewares/auth");
 

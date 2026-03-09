@@ -1,5 +1,6 @@
+// administracion.routes.js
 const express = require("express");
-const { authPage } = require("../middlewares/auth");
+const { authPage, requireRole } = require("../middlewares/auth");
 
 const router = express.Router();
 
@@ -11,13 +12,14 @@ router.get("/administracion.html", authPage, (req, res) => {
     return res.redirect("/administracion");
 });
 
-router.get("/administracion", authPage, (req, res) => {
+router.get("/administracion", authPage, requireRole("admin"), (req, res) => {
     return res.render("pages/administracion", {
         title: "Administración",
         styles: ["/modules/administracion/administracion.css"],
         scripts: ["/modules/administracion/administracion.js"],
         sidebarTitle: "Administración",
-        buttons: SIDEBAR_BUTTONS
+        buttons: SIDEBAR_BUTTONS,
+        auth: req.auth
     });
 });
 
@@ -26,3 +28,6 @@ router.get("/modules/administracion/administracion.html", authPage, (req, res) =
 });
 
 module.exports = router;
+
+
+

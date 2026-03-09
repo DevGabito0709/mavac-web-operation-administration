@@ -46,7 +46,11 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
 
-/* Estáticos desde carpeta public del backend */
+app.use((req, res, next) => {
+    res.locals.auth = req.auth || null;
+    next();
+});
+
 const publicDir = path.join(__dirname, "public");
 app.use("/shared", express.static(path.join(publicDir, "shared")));
 app.use("/modules", express.static(path.join(publicDir, "modules")));

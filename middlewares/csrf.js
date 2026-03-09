@@ -1,3 +1,4 @@
+// csrf.js
 const { logWarn } = require("../utils/logger");
 
 const TRUSTED_ORIGIN = process.env.FRONT_ORIGIN;

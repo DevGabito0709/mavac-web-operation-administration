@@ -96,7 +96,7 @@ router.post("/api/login", loginRateLimit, csrfProtection, async (req, res) => {
         }
 
         const resultado = await pool.query(
-            "SELECT id, usuario, password_hash FROM credenciales WHERE usuario = $1",
+            "SELECT id, usuario, password_hash, rol FROM credenciales WHERE usuario = $1",
             [usuarioLimpio]
         );
 
@@ -136,7 +136,8 @@ router.post("/api/login", loginRateLimit, csrfProtection, async (req, res) => {
         const token = jwt.sign(
             {
                 credencial_id: credencial.id,
-                usuario: credencial.usuario
+                usuario: credencial.usuario,
+                rol: credencial.rol
             },
             JWT_SECRET,
             {

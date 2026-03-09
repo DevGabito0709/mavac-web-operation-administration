@@ -1,6 +1,6 @@
 // cobranzas.api.routes.js
 const express = require("express");
-const { authApi } = require("../middlewares/auth");
+const { authApi, requireRole } = require("../middlewares/auth");
 const csrfProtection = require("../middlewares/csrf");
 const { cobranzasRateLimit } = require("../middlewares/rateLimit");
 const { logInfo, logWarn, logError } = require("../utils/logger");
@@ -22,7 +22,7 @@ router.get("/api/cobranzas/estado", authApi, (req, res) => {
     const enProceso = Array.from(ENTIDADES_EN_PROCESO);
 
     logInfo(req, "cobranzas_estado_consultado", {
-        usuario: req.user?.usuario || "desconocido",
+        usuario: req.auth?.usuario || "desconocido",
         en_proceso: enProceso
     });
 
@@ -33,7 +33,7 @@ router.get("/api/cobranzas/estado", authApi, (req, res) => {
 
 });
 
-router.post("/api/cobranzas/procesar", authApi, csrfProtection, cobranzasRateLimit, async (req, res) => {
+router.post("/api/cobranzas/procesar", authApi, requireRole("admin"), csrfProtection, cobranzasRateLimit, async (req, res) => {
     try {
         const entidadesRecibidas = req.body?.entidades;
 
@@ -88,7 +88,7 @@ router.post("/api/cobranzas/procesar", authApi, csrfProtection, cobranzasRateLim
         });
 
         logInfo(req, "cobranzas_proceso_iniciado", {
-            usuario: req.user?.usuario || "desconocido",
+            usuario: req.auth?.usuario || "desconocido",
             entidades
         });
 
@@ -124,7 +124,7 @@ router.post("/api/cobranzas/procesar", authApi, csrfProtection, cobranzasRateLim
 
         python.on("error", (error) => {
             logError(req, "cobranzas_python_error", {
-                usuario: req.user?.usuario || "desconocido",
+                usuario: req.auth?.usuario || "desconocido",
                 entidades,
                 message: error.message
             });
@@ -136,13 +136,13 @@ router.post("/api/cobranzas/procesar", authApi, csrfProtection, cobranzasRateLim
 
             if (code === 0) {
                 logInfo(req, "cobranzas_proceso_finalizado", {
-                    usuario: req.user?.usuario || "desconocido",
+                    usuario: req.auth?.usuario || "desconocido",
                     entidades,
                     code
                 });
             } else {
                 logError(req, "cobranzas_proceso_error_finalizacion", {
-                    usuario: req.user?.usuario || "desconocido",
+                    usuario: req.auth?.usuario || "desconocido",
                     entidades,
                     code
                 });
@@ -169,3 +169,18 @@ router.post("/api/cobranzas/procesar", authApi, csrfProtection, cobranzasRateLim
 });
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

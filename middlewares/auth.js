@@ -1,4 +1,4 @@
-
+// auth.js
 const jwt = require("jsonwebtoken");
 const { logWarn } = require("../utils/logger");
 
@@ -51,6 +51,18 @@ function authApi(req, res, next) {
     return next();
 }
 
+function requireRole(...allowedRoles) {
+    return (req, res, next) => {
+        if (!req.auth || !allowedRoles.includes(req.auth.rol)) {
+            return res.status(403).json({
+                error: "No autorizado"
+            });
+        }
+
+        return next();
+    };
+}
+
 function redirectIfAuthenticated(req, res, next) {
     const payload = getValidTokenPayload(req);
 
@@ -65,5 +77,6 @@ module.exports = {
     getValidTokenPayload,
     authPage,
     authApi,
+    requireRole,
     redirectIfAuthenticated
 };

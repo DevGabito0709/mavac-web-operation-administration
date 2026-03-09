@@ -1,3 +1,4 @@
+// inicio_oficina.routes.js
 const express = require("express");
 const { authPage } = require("../middlewares/auth");
 
@@ -19,7 +20,8 @@ router.get("/inicio-oficina", authPage, (req, res) => {
         styles: ["/modules/inicio_oficina/inicio_oficina.css"],
         scripts: ["/modules/inicio_oficina/inicio_oficina.js"],
         sidebarTitle: "Inicio Oficina",
-        buttons: SIDEBAR_BUTTONS
+        buttons: SIDEBAR_BUTTONS,
+        auth: req.auth
     });
 });
 
