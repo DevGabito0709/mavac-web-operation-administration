@@ -17,28 +17,34 @@ function getCookie(name) {
     return null;
 }
 
-btnCobranzas.addEventListener("click", () => {
-    window.location.href = "/cobranzas";
-});
+if (btnCobranzas) {
+    btnCobranzas.addEventListener("click", () => {
+        window.location.href = "/cobranzas";
+    });
+}
 
-btnAdministracion.addEventListener("click", () => {
-    window.location.href = "/modules/administracion/administracion.html";
-});
+if (btnAdministracion) {
+    btnAdministracion.addEventListener("click", () => {
+        window.location.href = "/modules/administracion/administracion.html";
+    });
+}
 
-btnCerrarSesion.addEventListener("click", async () => {
-    try {
-        const csrfToken = getCookie("csrf_token");
+if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener("click", async () => {
+        try {
+            const csrfToken = getCookie("csrf_token");
 
-        await fetch("/api/logout", {
-            method: "POST",
-            headers: {
-                "X-CSRF-Token": csrfToken || ""
-            },
-            credentials: "include"
-        });
-    } catch (error) {
-        console.error("Error al cerrar sesión:", error);
-    }
+            await fetch("/api/logout", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token": csrfToken || ""
+                },
+                credentials: "include"
+            });
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
 
-    window.location.replace("/modules/login/login.html");
-});
+        window.location.replace("/modules/login/login.html");
+    });
+}
