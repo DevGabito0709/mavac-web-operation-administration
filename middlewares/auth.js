@@ -27,7 +27,7 @@ function authPage(req, res, next) {
     const payload = getValidTokenPayload(req);
 
     if (!payload) {
-        return res.redirect("/modules/login/login.html");
+        return res.redirect("/login");
     }
 
     req.auth = payload;
@@ -67,7 +67,7 @@ function redirectIfAuthenticated(req, res, next) {
     const payload = getValidTokenPayload(req);
 
     if (payload) {
-        return res.redirect("/modules/inicio_oficina/inicio_oficina.html");
+        return res.redirect("/inicio_oficina");
     }
 
     return next();

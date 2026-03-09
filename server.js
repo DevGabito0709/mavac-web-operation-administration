@@ -81,3 +81,6 @@ app.listen(PORT, () => {
     console.log("Node escuchando en http://127.0.0.1:" + PORT);
     console.log("Entrar por Caddy en: " + FRONT_ORIGIN);
 });
+
+
+

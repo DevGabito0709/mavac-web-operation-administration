@@ -25,7 +25,7 @@ if (btnCobranzas) {
 
 if (btnAdministracion) {
     btnAdministracion.addEventListener("click", () => {
-        window.location.href = "/modules/administracion/administracion.html";
+        window.location.href = "/administracion";
     });
 }
 
@@ -45,6 +45,6 @@ if (btnCerrarSesion) {
             console.error("Error al cerrar sesión:", error);
         }
 
-        window.location.replace("/modules/login/login.html");
+        window.location.replace("/login");
     });
 }
