@@ -48,28 +48,26 @@ La aplicación es un **backend monolítico** en Node.js (Express) que:
 ## 2. Flujo de autenticación
 
 1. **Login:** el cliente envía `POST /api/login` con `usuario` y `password`. El servidor:
+
    - Valida contra la tabla `credenciales` (bcrypt).
    - Emite un JWT y lo guarda en cookie `token` (httpOnly, secure, sameSite).
    - Devuelve cookie `csrf_token` para operaciones posteriores.
-
 2. **Rutas protegidas (página):** el middleware `authPage` verifica la cookie `token`. Si no hay token o es inválido, redirige al login.
-
 3. **Rutas protegidas (API):** el middleware `authApi` verifica la cookie `token`. Si no hay token o es inválido, responde 401.
-
 4. **Logout:** `POST /api/logout` (con `authApi` y CSRF) limpia las cookies `token` y `csrf_token`.
 
 ---
 
 ## 3. Seguridad
 
-| Mecanismo | Uso |
-|-----------|-----|
-| **Helmet** | Cabeceras HTTP seguras |
-| **CORS** | Origen único `FRONT_ORIGIN`, `credentials: true` |
-| **JWT en cookie** | httpOnly, secure, sameSite lax, dominio `COOKIE_DOMAIN` |
-| **CSRF** | Token en cookie + header `x-csrf-token` en POST/PUT/PATCH/DELETE |
-| **Rate limit** | Login: 5 intentos / 10 min; Cobranzas: 5 / min |
-| **Validación** | Usuario con regex, longitudes, tipos; entidades de cobranzas en whitelist |
+| Mecanismo               | Uso                                                                       |
+| ----------------------- | ------------------------------------------------------------------------- |
+| **Helmet**        | Cabeceras HTTP seguras                                                    |
+| **CORS**          | Origen único `FRONT_ORIGIN`, `credentials: true`                     |
+| **JWT en cookie** | httpOnly, secure, sameSite lax, dominio `COOKIE_DOMAIN`                 |
+| **CSRF**          | Token en cookie + header `x-csrf-token` en POST/PUT/PATCH/DELETE        |
+| **Rate limit**    | Login: 5 intentos / 10 min; Cobranzas: 5 / min                            |
+| **Validación**   | Usuario con regex, longitudes, tipos; entidades de cobranzas en whitelist |
 
 ---
 
